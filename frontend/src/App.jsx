@@ -7,6 +7,7 @@ import FirmwareEditor        from './components/FirmwareEditor'
 import Observability         from './components/Observability'
 import SensorEditor          from './components/SensorEditor'
 import BoardAssembly         from './components/BoardAssembly'
+import ControlProject        from './components/ControlProject'
 
 const WS_URL = import.meta.env.VITE_WS_URL ?? 'ws://localhost:8000/ws'
 
@@ -66,7 +67,7 @@ export default function App() {
         ))}
       </nav>
 
-      <main className={tab === 'montagem' || tab === 'firmware' ? '' : 'p-5 max-w-6xl mx-auto'}>
+      <main className={['montagem','firmware','controle'].includes(tab) ? '' : 'p-5 max-w-6xl mx-auto'}>
         {tab === 'dashboard' && (
           <Dashboard robot={robot} sensorLayout={dashboardLayout} />
         )}
@@ -90,11 +91,7 @@ export default function App() {
           </div>
         )}
         {tab === 'controle' && (
-          <div className="flex items-center justify-center min-h-[40vh]">
-            <p className="text-xs text-gray-700 font-mono tracking-widest uppercase">
-              Projeto de Controle — em breve
-            </p>
-          </div>
+          <ControlProject />
         )}
       </main>
     </div>
